@@ -8,10 +8,16 @@ using UnityEngine.UI;
 public class MenuEmGame : MonoBehaviour
 {
    //ele salva os dados aqui setados que são chmados via clique por metodos e salva em playerprefs e resgata esses valores em Dadosdetexto
-    public TextMeshProUGUI txtFala;
-    public TextMeshProUGUI txtNome;
-    public GameObject Menu;
+    [SerializeField]private GameObject Menu;
     private bool IsActive=false;
+    private bool IsMuted = false;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Menu.SetActive(IsActive = false);
+        }
+    }
     //tamanho da fonte
     public void fontPEQ()
     {
@@ -60,5 +66,21 @@ public class MenuEmGame : MonoBehaviour
     {
         IsActive =! IsActive;
         Menu.SetActive(IsActive);
+    }
+    public void Mute()
+    {
+        IsMuted = !IsMuted;
+        if (IsMuted)
+        {
+            PlayerPrefs.SetString("AudioState","muted");
+
+        }
+       
+        else
+        {
+            PlayerPrefs.SetString("AudioState", "notmuted");
+ 
+        }
+           
     }
 }

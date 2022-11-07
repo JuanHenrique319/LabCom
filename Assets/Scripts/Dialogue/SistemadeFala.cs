@@ -82,20 +82,22 @@ public class SistemadeFala : MonoBehaviour
     }
     IEnumerator EfeitoTypping()
     {
-        var stringOriginal = textos[i];
+        var stringOriginal = textos[i];    
         objdetexto.text = "";
-
+        
         var Charrevelados = 0;
         while (Charrevelados < stringOriginal.Length)
         {
+            
             while (stringOriginal[Charrevelados] == ' ')
                 ++Charrevelados;
-
+            
             ++Charrevelados;
 
             objdetexto.text = stringOriginal.Substring(0, Charrevelados);
-
-            yield return new WaitForSeconds(0.02f);
+            
+            yield return new WaitForSeconds(0.04f);
         }
+
     }
 }

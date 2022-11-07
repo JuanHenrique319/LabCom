@@ -10,11 +10,26 @@ public class SoundPlaylist : MonoBehaviour
     //vetor para as musicas serem indexadas
     [Header("vetor de músicas a serem tocadas")]
     public AudioClip[] musicclips;
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     void Start()
     {
         //defini que está tocando ao iniciar e inicia o enum que roda a lista de musicas
         playing = true;
         StartCoroutine(Playmusicloop());
+    }
+    private void Update()
+    {
+        if(PlayerPrefs.GetString("AudioState")== "muted")
+        {
+            source.mute= true;
+        }
+        else
+        {
+            source.mute= false;
+        }
     }
 
     // Update is called once per frame
